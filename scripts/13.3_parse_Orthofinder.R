@@ -2,7 +2,6 @@ library(tidyverse)
 library(data.table)
 
 
-
 dat <- fread("/data/users/UserID/assembly-annotation-course/output/maker/final/genespace/orthofinder/Results_Nov01/Comparative_Genomics_Statistics/Statistics_PerSpecies.tsv", header = T, fill = TRUE)
 genomes <- names(dat)[names(dat) != "V1"]
 
