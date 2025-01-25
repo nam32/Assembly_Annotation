@@ -3,12 +3,12 @@
 #SBATCH --output=genespace_%j.out
 #SBATCH --error=genespace_%j.err
 #SBATCH --ntasks=1
-#SBATCH --partition=pibu_el8  # Use an appropriate partition on your cluster
-#SBATCH --cpus-per-task=8     # Adjust based on resource needs
-#SBATCH --mem=32G             # Adjust memory requirements
-#SBATCH --time=24:00:00       # Adjust time as needed
+#SBATCH --partition=pibu_el8
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=84G
+#SBATCH --time=24:00:00
 
-GENESPACE_DIR="/data/users/tjanjumratsang/assembly_annotation_course/genespace_3acc"
+GENESPACE_DIR="/data/users/tjanjumratsang/assembly_annotation_course/genespace_all"
 SCRIPT_DIR="/data/users/tjanjumratsang/assembly_annotation_course/scripts"
 COURSEDIR="/data/courses/assembly-annotation-course/CDS_annotation"
 CONTAINER="$COURSEDIR/containers/genespace_latest.sif"

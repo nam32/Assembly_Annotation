@@ -7,7 +7,7 @@
 #SBATCH --partition=pibu_el8
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --time=1:00:00
+#SBATCH --time=5:00:00
 
 #protein=$1 # assembly.all.maker.proteins.fasta
 #transcript=$2 # assembly.all.maker.transcripts.fasta
@@ -33,14 +33,14 @@ module load UCSC-Utils/448-foss-2021a
 module load BioPerl/1.7.8-GCCcore-10.3.0
 module load MariaDB/10.6.4-GCC-10.3.0
 
-
 # Create a directory to store the final files after filtering them based on AED values and InterProScan annotations
-#mkdir final
-cp ./../gene_annotation_directory/$gff ./${gff}.renamed.gff
-cp ./../gene_annotation_directory/$protein ./${protein}.renamed.fasta 
-cp ./../gene_annotation_directory/$transcript "assembly.all.maker.noseq.gff.renamed.fasta"
+mkdir -p /data/users/tjanjumratsang/assembly_annotation_course/gene_annotation_directory/final
 
-cd final
+cd $WORKDIR
+
+cp /data/users/tjanjumratsang/assembly_annotation_course/gene_annotation_directory/$gff /data/users/tjanjumratsang/assembly_annotation_course/final/${gff}.renamed.gff
+cp /data/users/tjanjumratsang/assembly_annotation_course/gene_annotation_directory/$protein /data/users/tjanjumratsang/assembly_annotation_course/final/${protein}.renamed.fasta 
+cp /data/users/tjanjumratsang/assembly_annotation_course/gene_annotation_directory/$transcript "/data/users/tjanjumratsang/assembly_annotation_course/final/assembly.all.maker.noseq.gff.renamed.fasta"
 
 prefix="ice1"
 

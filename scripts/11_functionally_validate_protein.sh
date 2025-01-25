@@ -16,6 +16,7 @@ MAKERBIN="$COURSEDIR/softwares/Maker_v3.01.03/src/bin"
 cd /data/users/tjanjumratsang/assembly_annotation_course/final
 
 module load BLAST+/2.15.0-gompi-2021a  # Load the BLAST+ module
+module load SAMtools/1.13-GCC-10.3.0
 
 # Run the BLASTp command to check homology ( Align proteins against UniProt database (uniprot_viridiplantae_reviewed.fa))
 blastp -query longest_proteins.fasta \
@@ -34,5 +35,7 @@ cp filtered.genes.renamed.gff3 filtered.genes.renamed.gff3.Uniprot
 
 $MAKERBIN/maker_functional_fasta /data/courses/assembly-annotation-course/CDS_annotation/data/uniprot/uniprot_viridiplantae_reviewed.fa blastp_output assembly.all.maker.proteins.fasta.renamed.fasta > assembly.all.maker.proteins.fasta.renamed.fasta.Uniprot
 $MAKERBIN/maker_functional_gff /data/courses/assembly-annotation-course/CDS_annotation/data/uniprot/uniprot_viridiplantae_reviewed.fa blastp_output filtered.genes.renamed.gff3 > filtered.genes.renamed.gff3.Uniprot
+
+samtools faidx /data/users/tjanjumratsang/assembly_annotation_course/final/assembly.all.maker.proteins.fasta.renamed.fasta.Uniprot
 
 echo "Functional annotation with UniProt homology completed."

@@ -18,7 +18,7 @@ mkdir -p $WORKDIR
 apptainer exec \
 --bind $WORKDIR \
 /containers/apptainer/merqury_1.3.sif \
-bash -c "meryl k=23 count /data/users/tjanjumratsang/assembly_annotation_course/Ice-1/ERR11437339.fastq.gz output $WORKDIR/reads.meryl"
+bash -c "meryl k=23 count /data/courses/assembly-annotation-course/raw_data/Ice-1/ERR11437339.fastq.gz output $WORKDIR/reads.meryl"
 
 export MERQURY="/usr/local/share/merqury"
 

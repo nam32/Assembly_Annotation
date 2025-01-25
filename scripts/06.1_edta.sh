@@ -4,11 +4,13 @@
 #SBATCH --error=edta_annotation_%j.err
 #SBATCH --ntasks=1
 #SBATCH --partition=pibu_el8
-#SBATCH --cpus-per-task=8   # Adjust based on available resources
-#SBATCH --mem=32G           # Adjust memory requirements
-#SBATCH --time=24:00:00     # Adjust time as needed
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=82:00:00
 
 WORKDIR=/data/users/tjanjumratsang/assembly_annotation_course
+mkdir -p $WORKDIR/edta_annotation
+cd $WORKDIR/edta_annotation
 flye_assembly="$WORKDIR/flye_assembly/assembly.fasta"
 CONTAINER_PATH=/data/courses/assembly-annotation-course/containers2/EDTA_v1.9.6.sif
 

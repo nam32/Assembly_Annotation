@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=mummer_analysis
-#SBATCH --output=mummer_analysis_%j.out
-#SBATCH --error=mummer_analysis_%j.err
+#SBATCH --output=assembly_mummer_analysis_%j.out
+#SBATCH --error=assembly_mummer_analysis_%j.err
 #SBATCH --ntasks=1
 #SBATCH --partition=pibu_el8
-#SBATCH --cpus-per-task=8   # Adjust based on available resources
-#SBATCH --mem=32G           # Adjust memory requirements
-#SBATCH --time=24:00:00     # Adjust time as needed
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=24:00:00
 
 # Define working directory and paths
 WORKDIR=/data/users/tjanjumratsang/assembly_annotation_course
@@ -14,7 +14,7 @@ OUTPUT_DIR=$WORKDIR/mummer_results
 REFERENCE_GENOME="/data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa"
 
 # Paths to assemblies
-flye_assembly="$WORKDIR/flye_assembly/assembly.fastaa"
+flye_assembly="$WORKDIR/flye_assembly/assembly.fasta"
 hifiasm_assembly="$WORKDIR/hifiasm/assembly.fa"
 lja_assembly="$WORKDIR/lja/assembly.fasta"
 
