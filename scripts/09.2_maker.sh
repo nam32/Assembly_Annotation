@@ -1,4 +1,26 @@
 #!/bin/bash
+
+# This script runs the MAKER gene annotation pipeline with MPI parallelism, using 50 tasks for faster processing.
+# After the annotation process, it merges the output GFF3 files and FASTA sequences into unified files for downstream analyses.
+#
+# **Workflow**:
+# 1. Configures the environment and ensures necessary paths and permissions are set.
+# 2. Runs the MAKER annotation pipeline within an Apptainer (Singularity) container.
+# 3. Post-processes the outputs by merging GFF3 annotations and FASTA sequences.
+#
+# **Requirements**:
+# - MAKER must be accessible via an Apptainer container.
+# - RepeatMasker, AUGUSTUS, and other dependencies must be properly configured.
+# - MPI must be loaded for parallel execution.
+#
+# **Output**:
+# - `assembly.all.maker.gff`: Combined GFF3 file with sequence data.
+# - `assembly.all.maker.noseq.gff`: Combined GFF3 file without sequence data.
+# - Merged FASTA sequence file.
+#
+# Reference:
+# - MAKER documentation: http://www.yandell-lab.org/software/maker.html
+
 #SBATCH --time=24:00:00
 #SBATCH --mem=64G
 #SBATCH --partition=pibu_el8

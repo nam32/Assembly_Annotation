@@ -1,4 +1,27 @@
 #!/bin/bash
+
+# This script runs MUMmer tools (nucmer and mummerplot) to compare genome assemblies between 
+# different accessions. It performs pairwise comparisons between assemblies using nucmer for 
+# alignment and mummerplot for visualization.
+#
+# Usage:
+#   This script is designed to run on a Slurm-based cluster environment.
+#   The analysis is performed within a Singularity (Apptainer) container.
+#
+# Output:
+#   - MUMmer delta files for pairwise comparisons.
+#   - PNG visualizations of alignments for each comparison.
+#
+# Requirements:
+#   - MUMmer tools (nucmer, mummerplot) must be available through a container.
+#   - Input assemblies must be in FASTA format.
+#
+# Parameters:
+#   - Input: Genome assemblies from different accessions.
+#
+# Reference:
+#   MUMmer documentation: https://github.com/mummer4/mummer
+
 #SBATCH --job-name=mummer_analysis
 #SBATCH --output=compare_accessions_mummer_analysis_%j.out
 #SBATCH --error=compare_accessions_mummer_analysis_%j.err
@@ -6,7 +29,7 @@
 #SBATCH --partition=pibu_el8
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --time=24:00:00
+#SBATCH --time=12:00:00
 
 # Define working directory and paths
 WORKDIR=/data/users/tjanjumratsang/assembly_annotation_course

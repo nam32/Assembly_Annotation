@@ -8,6 +8,28 @@
 #SBATCH --mem=32G
 #SBATCH --time=24:00:00
 
+# This script uses MUMmer tools (nucmer and mummerplot) to perform pairwise genome alignments
+# and visualize results. It compares genome assemblies (Flye, Hifiasm, and LJA) against a
+# reference genome (Arabidopsis thaliana) and each other.
+#
+# Usage:
+#   Designed to run on a Slurm-based cluster environment. All comparisons and plots are
+#   performed using MUMmer within a Singularity (Apptainer) container.
+#
+# Output:
+#   - MUMmer delta files for pairwise alignments.
+#   - PNG visualizations of alignments for each comparison.
+#
+# Requirements:
+#   - MUMmer tools (nucmer, mummerplot) must be available via the container.
+#   - Input assemblies and the reference genome must be in FASTA format.
+#
+# Parameters:
+#   - Input: Reference genome and genome assemblies.
+#
+# Reference:
+#   MUMmer documentation: https://github.com/mummer4/mummer
+
 # Define working directory and paths
 WORKDIR=/data/users/tjanjumratsang/assembly_annotation_course
 OUTPUT_DIR=$WORKDIR/mummer_results

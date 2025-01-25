@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #SBATCH --cpus-per-task=1
 #SBATCH --time=5:00:00
 #SBATCH --mem=32G
@@ -6,6 +7,31 @@
 #SBATCH --job-name=phylo_TE_analysis
 #SBATCH --output=phylo_TE_analysis_%j.out
 #SBATCH --error=phylo_TE_analysis_%j.err
+
+# This script performs a phylogenetic analysis of retrotransposons (Copia and Gypsy) using sequences from 
+# Arabidopsis and Brassicaceae transposable element (TE) libraries. It extracts, aligns, and constructs 
+# phylogenetic trees for reverse transcriptase (RT) domains.
+#
+# Usage:
+#   Designed to run on a Slurm-based cluster environment. It leverages SeqKit, Clustal Omega, 
+#   and FastTree for TE sequence processing and analysis. TEsorter is used for domain classification.
+#
+# Output:
+#   - Extracted RT sequences for Copia and Gypsy retrotransposons.
+#   - Multiple sequence alignments for Copia and Gypsy RT domains.
+#   - Phylogenetic trees for Copia and Gypsy retrotransposons.
+#
+# Requirements:
+#   - SeqKit module must be loaded.
+#   - Clustal Omega and FastTree must be available.
+#   - TEsorter must be accessible via Singularity (Apptainer) container.
+#   - Input TE libraries must be in FASTA format.
+#
+# References:
+#   - SeqKit: https://bioinf.shenwei.me/seqkit
+#   - TEsorter: https://github.com/zhangrengang/TEsorter
+#   - Clustal Omega: https://www.ebi.ac.uk/Tools/msa/clustalo/
+#   - FastTree: http://www.microbesonline.org/fasttree/
 
 # Directories and file paths for input and output files
 DIR_EDTA=/data/users/tjanjumratsang/assembly_annotation_course/edta_annotation

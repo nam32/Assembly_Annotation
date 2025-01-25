@@ -5,7 +5,7 @@
 # FASTQ files, and outputs the results to a specified directory. The script is designed
 # to run on a Slurm cluster with specified resource allocations.
 
-#SBATCH --time=1-00:00:00
+#SBATCH --time=00:30:00
 #SBATCH --mem=16G
 #SBATCH --cpus-per-task=4
 #SBATCH --job-name=fastqc

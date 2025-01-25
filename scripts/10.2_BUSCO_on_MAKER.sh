@@ -1,5 +1,30 @@
 #!/bin/bash
 
+# This script runs BUSCO (Benchmarking Universal Single-Copy Orthologs) analysis on the longest protein and transcript 
+# FASTA files generated during the MAKER annotation process. It evaluates the completeness of the annotations against 
+# the `brassicales_odb10` lineage database.
+#
+# **Workflow**:
+# 1. Navigates to the working directory containing the input files (`longest_proteins.fasta` and `longest_transcripts.fasta`).
+# 2. Loads the BUSCO module.
+# 3. Runs BUSCO in protein mode for `longest_proteins.fasta`.
+# 4. Runs BUSCO in transcriptome mode for `longest_transcripts.fasta`.
+#
+# **Input**:
+# - `longest_proteins.fasta`: FASTA file containing the longest protein isoforms for each gene.
+# - `longest_transcripts.fasta`: FASTA file containing the longest transcript isoforms for each gene.
+#
+# **Output**:
+# - `maker_busco_output_protein`: BUSCO output directory for protein analysis.
+# - `maker_busco_output_transcript`: BUSCO output directory for transcriptome analysis.
+#
+# **Requirements**:
+# - BUSCO (version 5.4.2 or compatible) must be available.
+# - The lineage database (`brassicales_odb10`) must be installed and accessible.
+#
+# Reference:
+# - BUSCO documentation: https://busco.ezlab.org/
+
 #SBATCH --job-name=MAKER_BUSCO
 #SBATCH --output=MAKER_BUSCO_%j.out
 #SBATCH --error=MAKER_BUSCO_%j.err

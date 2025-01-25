@@ -1,12 +1,17 @@
 #!/bin/bash
 
-#SBATCH --time=1-00:00:00        # 1 day max time
-#SBATCH --mem=16G                # Memory allocation
-#SBATCH --cpus-per-task=4        # Number of CPUs
-#SBATCH --job-name=fastp         # Updated job name to match fastp
-#SBATCH --partition=pibu_el8     # Partition to run on
-#SBATCH --output=fastp_%j.out    # Output log file
-#SBATCH --error=fastp_%j.err     # Error log file
+# This script processes paired-end Illumina RNA-seq reads using fastp.
+# It performs quality control, filtering, and trimming of reads while generating a JSON and HTML report.
+# The trimmed and filtered reads are saved to the specified output directory.
+# Designed to run on a Slurm cluster with the 'fastp' module loaded.
+
+#SBATCH --time=00:30:00
+#SBATCH --mem=16G
+#SBATCH --cpus-per-task=4
+#SBATCH --job-name=fastp
+#SBATCH --partition=pibu_el8
+#SBATCH --output=fastp_%j.out
+#SBATCH --error=fastp_%j.err
 
 module load fastp
 
@@ -21,7 +26,7 @@ ILLUMINA_OUTPUT_R2=$OUTDIR/ERR754081_2_tr.fastq.gz
 ILLUMINA_REPORT=$OUTDIR/illumina_report.json
 ILLUMINA_HTML=$OUTDIR/illumina_report.html
 
-# Run fastp on Illumina data for filtering and trimming
+# Run fastp with specified options for trimming and filtering
 fastp \
     -i $ILLUMINA_INPUT_R1 \
     -I $ILLUMINA_INPUT_R2 \

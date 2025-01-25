@@ -1,13 +1,33 @@
 #!/bin/bash
 
+# This script runs the LJA assembler for genome assembly using PacBio HiFi reads.
+# The assembly process is performed within a Singularity (Apptainer) container.
+#
+# Usage:
+#   This script is designed to run on a Slurm-based cluster environment.
+#   Input is a gzipped FASTQ file containing PacBio HiFi reads.
+#
+# Output:
+#   - Assembled genome files will be saved in the specified output directory.
+#
+# Requirements:
+#   - Apptainer (Singularity) must be available on the cluster.
+#   - The LJA container image must be accessible at the specified path.
+#
+# Parameters:
+#   - Input: PacBio HiFi reads file (ERR11437339.fastq.gz)
+#
+# Reference:
+#   LJA documentation: https://github.com/AntonBankevich/LJA
+
 #SBATCH --job-name=lja_assembly
 #SBATCH --output=lja_assembly_%j.out
 #SBATCH --error=lja_assembly_%j.err
 #SBATCH --ntasks=1
 #SBATCH --partition=pibu_el8
-#SBATCH --cpus-per-task=16   # Adjust based on your computational resources
-#SBATCH --mem=64G            # Adjust memory requirements
-#SBATCH --time=48:00:00       # Adjust time as needed
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=64G
+#SBATCH --time=48:00:00
 
 # Define input reads and output directory
 WORKDIR=/data/users/tjanjumratsang/assembly_annotation_course

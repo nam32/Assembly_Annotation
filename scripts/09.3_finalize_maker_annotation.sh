@@ -1,5 +1,36 @@
 #! /bin/bash
 
+# This script finalizes the gene annotation process by:
+# 1. Running InterProScan on the MAKER-generated protein file to annotate functional domains.
+# 2. Updating the GFF and FASTA files with clean, prefix-based IDs.
+# 3. Filtering GFF annotations based on AED values and InterProScan results for quality.
+# 4. Extracting high-quality mRNA, transcript, and protein sequences for downstream analyses.
+#
+# **Workflow**:
+# - Copies necessary MAKER output files (GFF, protein, transcript) into a dedicated "final" directory.
+# - Updates IDs in the GFF and FASTA files using `maker_map_ids`, ensuring a clean naming convention.
+# - Annotates protein sequences with InterProScan to identify functional domains and GO terms.
+# - Updates the GFF file with InterProScan annotations and filters annotations for quality.
+# - Extracts high-confidence mRNA entries and filters the corresponding transcript and protein FASTA files.
+#
+# **Inputs**:
+# - Protein FASTA (`assembly.all.maker.proteins.fasta`)
+# - Transcript FASTA (`assembly.all.maker.transcripts.fasta`)
+# - GFF3 file (`assembly.all.maker.noseq.gff`)
+#
+# **Outputs**:
+# - Updated and filtered GFF file with InterProScan annotations.
+# - Filtered transcript and protein FASTA files containing high-quality mRNA entries.
+#
+# **Requirements**:
+# - Modules: UCSC-Utils, BioPerl, MariaDB
+# - Tools: MAKER utilities (e.g., `maker_map_ids`, `ipr_update_gff`, etc.), InterProScan, `faSomeRecords`
+# - Proper paths and permissions for the input and output directories.
+#
+# Reference:
+# - MAKER documentation: http://www.yandell-lab.org/software/maker.html
+# - InterProScan: https://www.ebi.ac.uk/interpro/interproscan/
+
 #SBATCH --job-name=final_maker_annotation
 #SBATCH --output=final_maker_annotation_%j.out
 #SBATCH --error=final_maker_annotation_%j.err

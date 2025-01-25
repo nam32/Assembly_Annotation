@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# This script runs the Flye assembler to assemble a genome using PacBio HiFi reads. 
+# The Flye assembly is executed within a Singularity (Apptainer) container.
+#
+# Usage:
+#   This script is designed to run on a Slurm-based cluster environment.
+#   The input is a gzipped FASTQ file containing PacBio HiFi reads.
+#
+# Output:
+#   - Assembled genome files will be saved in the specified output directory.
+#
+# Requirements:
+#   - Apptainer (Singularity) must be available on the cluster.
+#   - The Flye container image must be accessible at the specified path.
+#
+# Parameters:
+#   - Input: PacBio HiFi reads file (ERR11437339.fastq.gz)
+#
+# Reference:
+#   Flye documentation: https://github.com/fenderglass/Flye
+
 #SBATCH --job-name=flye_assembly
 #SBATCH --time=1-00:00:00
 #SBATCH --mem=64G

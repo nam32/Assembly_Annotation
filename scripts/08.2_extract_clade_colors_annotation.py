@@ -1,3 +1,27 @@
+# This script processes transposable element (TE) clade annotations and assigns unique colors to each clade.
+# It takes as input a combined TE annotation file and outputs a file with the following fields:
+# - id: The identifier of the TE sequence.
+# - color: A unique color assigned to the clade for visualization.
+# - clade: The clade of the TE sequence.
+#
+# Functionality:
+# 1. Reads the input file into a pandas DataFrame.
+# 2. Extracts unique clades and assigns colors to each clade using a shuffled list of CSS4 colors.
+# 3. Creates a new DataFrame containing the id, clade, and assigned color for each TE.
+# 4. Saves the annotated data to a space-separated output file without headers or indices.
+#
+# Notes:
+# - The input file path and output file path are hardcoded and need to be updated as required.
+# - The script assumes specific column positions in the input file:
+#   - Column 0: 'id' (TE identifier)
+#   - Column 3: 'clade' (TE clade)
+# - The script randomly assigns colors from a fixed palette (CSS4_COLORS).
+#
+# Requirements:
+# - Python packages: pandas, numpy, matplotlib
+# - Input file: The combined TE annotation file in a space-separated format with a header.
+# - Output file: Annotated TE clade file with id, color, and clade columns.
+
 import pandas as pd
 import numpy as np
 import matplotlib.colors as mcolors

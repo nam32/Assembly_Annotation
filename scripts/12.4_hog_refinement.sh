@@ -1,4 +1,30 @@
 #!/bin/bash
+
+# This script refines homologous orthologous group (HOG) annotations by aligning conserved HOG fragments 
+# to a genomic assembly using Miniprot. It downloads and compiles Miniprot if not already available,
+# then aligns the sequences and generates output in GFF format.
+#
+# **Workflow**:
+# 1. Loads necessary modules for Miniprot compilation (GCC and zlib).
+# 2. Downloads and compiles Miniprot from the GitHub repository if not already installed.
+# 3. Aligns conserved HOG fragments (`conserved_hog_fragment.fa`) to the genomic assembly (`assembly.fasta`) using Miniprot.
+# 4. Saves alignment results in GFF format (`miniprot_output.gff`).
+#
+# **Input**:
+# - `assembly.fasta`: Genomic assembly to align against.
+# - `conserved_hog_fragment.fa`: FASTA file containing conserved HOG fragments.
+#
+# **Output**:
+# - `miniprot_output.gff`: GFF file containing alignment results.
+#
+# **Requirements**:
+# - Modules: GCC and zlib for Miniprot compilation.
+# - Git access to clone the Miniprot repository.
+# - Genomic assembly and HOG fragment files must exist in the specified paths.
+#
+# Reference:
+# - Miniprot GitHub repository: https://github.com/lh3/miniprot
+
 #SBATCH --cpus-per-task=1
 #SBATCH --time=5:00:00
 #SBATCH --mem=32G

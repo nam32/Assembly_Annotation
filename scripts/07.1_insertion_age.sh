@@ -1,13 +1,31 @@
 #!/bin/bash
 
+# This script calculates insertion age of transposable elements (TEs) using parseRM.pl on the 
+# RepeatMasker output from EDTA. The script also downloads the parseRM.pl script and ensures 
+# it is executable before running.
+#
+# Usage:
+#   Designed to run on a Slurm-based cluster environment. The BioPerl module is required for 
+#   running parseRM.pl.
+#
+# Output:
+#   - A parsed TSV file containing TE divergence information (`parsed_TE_divergence_output.tsv`).
+#
+# Requirements:
+#   - EDTA output directory must contain the RepeatMasker annotation file.
+#   - The BioPerl module must be loaded.
+#
+# References:
+#   - parseRM.pl: https://github.com/4ureliek/Parsing-RepeatMasker-Outputs
+
 #SBATCH --job-name=_insertion_age
 #SBATCH --output=insertion_age_%j.out
 #SBATCH --error=insertion_age_%j.err
 #SBATCH --ntasks=1
 #SBATCH --partition=pibu_el8
-#SBATCH --cpus-per-task=8   # Adjust based on available resources
-#SBATCH --mem=32G           # Adjust memory requirements
-#SBATCH --time=6:00:00     # Adjust time as needed
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=3:00:00
 
 # Define the directory for the EDTA output
 DIR_EDTA=/data/users/tjanjumratsang/assembly_annotation_course/edta_annotation

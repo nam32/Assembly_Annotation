@@ -1,13 +1,35 @@
 #!/bin/bash
 
+# This script runs Hifiasm for de novo genome assembly using PacBio HiFi reads. 
+# The assembly process is performed within a Singularity (Apptainer) container.
+# After assembly, the GFA file is converted to a FASTA format for downstream analysis.
+#
+# Usage:
+#   This script is designed to run on a Slurm-based cluster environment.
+#   Input is a gzipped FASTQ file containing PacBio HiFi reads.
+#
+# Output:
+#   - A GFA file containing the genome assembly graph.
+#   - A FASTA file with assembled contigs/sequences.
+#
+# Requirements:
+#   - Apptainer (Singularity) must be available on the cluster.
+#   - The Hifiasm container image must be accessible at the specified path.
+#
+# Parameters:
+#   - Input: PacBio HiFi reads file (ERR11437339.fastq.gz)
+#
+# Reference:
+#   Hifiasm documentation: https://github.com/chhylp123/hifiasm
+
 #SBATCH --job-name=hifiasm_assembly
 #SBATCH --output=hifiasm_assembly_%j.out
 #SBATCH --error=hifiasm_assembly_%j.err
 #SBATCH --ntasks=1
 #SBATCH --partition=pibu_el8
-#SBATCH --cpus-per-task=16   # Adjust based on your computational resources
-#SBATCH --mem=64G            # Adjust memory requirements
-#SBATCH --time=48:00:00       # Adjust time as needed
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=64G
+#SBATCH --time=02:00:00
 
 
 # Define input reads and output directory

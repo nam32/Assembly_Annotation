@@ -1,12 +1,35 @@
 #!/bin/bash
+
+# This script runs QUAST to assess and compare the quality of multiple genome assemblies
+# (Flye, Hifiasm, and LJA) in two modes:
+#   1. Without a reference genome.
+#   2. Using the Arabidopsis thaliana reference genome.
+#
+# Usage:
+#   Designed to run on a Slurm-based cluster environment, the analysis is performed within a
+#   Singularity (Apptainer) container.
+#
+# Output:
+#   - Comprehensive QUAST reports for all input assemblies, with and without a reference.
+#
+# Requirements:
+#   - QUAST must be available via a Singularity container.
+#   - Input assemblies and the reference genome must be in FASTA format.
+#
+# Parameters:
+#   - Input Assemblies: Flye, Hifiasm, LJA.
+#
+# Reference:
+#   QUAST documentation: http://quast.sourceforge.net/
+
 #SBATCH --job-name=quast_analysis_tgt
 #SBATCH --output=quast_analysis_tgt_%j.out
 #SBATCH --error=quast_analysis_tgt_%j.err
 #SBATCH --ntasks=1
 #SBATCH --partition=pibu_el8
-#SBATCH --cpus-per-task=16  # Adjust based on available resources
-#SBATCH --mem=32G           # Adjust memory requirements
-#SBATCH --time=12:00:00     # Adjust time as needed
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=32G
+#SBATCH --time=12:00:00
 
 # Define the working directory
 WORKDIR=/data/users/tjanjumratsang/assembly_annotation_course

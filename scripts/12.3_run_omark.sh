@@ -1,4 +1,31 @@
 #!/bin/bash
+
+# This script runs an OMArk analysis to process orthologous group results from an OMAmmer search. 
+# It uses the isoform list, protein FASTA file, and OMA database to generate processed outputs.
+#
+# **Workflow**:
+# 1. Navigates to the working directory containing the input files.
+# 2. Activates the `OMArk` Conda environment for the analysis.
+# 3. Executes the `omark` command to process the results of the OMAmmer search.
+#
+# **Input**:
+# - `assembly.all.maker.proteins.fasta.renamed.fasta.omamer`: OMAmmer results file.
+# - `assembly.all.maker.proteins.fasta.renamed.fasta`: Protein FASTA file.
+# - `isoform_list.txt`: File listing isoforms for each gene.
+# - `LUCA.h5`: OMA database file.
+#
+# **Output**:
+# - `omark_output`: Directory containing the processed results.
+#
+# **Requirements**:
+# - Conda environment: `OMArk` must be pre-configured.
+# - OMAmmer results file (`.omamer`) must exist.
+# - Isoform list (`isoform_list.txt`) must be correctly formatted and available.
+# - OMA database (`LUCA.h5`) must be accessible.
+#
+# Reference:
+# - OMArk documentation: https://omabrowser.org/oma/omark
+
 #SBATCH --cpus-per-task=1
 #SBATCH --time=5:00:00
 #SBATCH --mem=32G

@@ -1,12 +1,17 @@
 #!/bin/bash
 
-#SBATCH --time=1-00:00:00        # 1 day max time
-#SBATCH --mem=16G                # Memory allocation
-#SBATCH --cpus-per-task=4        # Number of CPUs
-#SBATCH --job-name=fastp         # Updated job name to match fastp
-#SBATCH --partition=pibu_el8     # Partition to run on
-#SBATCH --output=fastp_%j.out    # Output log file
-#SBATCH --error=fastp_%j.err     # Error log file
+# This script processes PacBio reads using fastp, focusing on generating 
+# quality control reports without applying quality or length filtering.
+# The processed reads and QC reports are saved to the specified output directory.
+# Designed to run on a Slurm cluster with the 'fastp' module loaded.
+
+#SBATCH --time=00:30:00
+#SBATCH --mem=16G
+#SBATCH --cpus-per-task=4
+#SBATCH --job-name=fastp
+#SBATCH --partition=pibu_el8
+#SBATCH --output=fastp_%j.out
+#SBATCH --error=fastp_%j.err
 
 module load fastp
 
